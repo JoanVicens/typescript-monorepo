@@ -25,9 +25,9 @@ export class Server {
 
         this.express.use(router);
 
-        router.use((err: Error, _req: Request, res: Response) => {
+        router.use((err: Error, _req: Request, res: Response, _next: Function) => {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
-          });
+        });;
     }
 
     async listen(): Promise<void> {
