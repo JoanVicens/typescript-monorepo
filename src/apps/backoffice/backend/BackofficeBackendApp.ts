@@ -13,4 +13,8 @@ export default class BackofficeBackendApp {
     async stop() {
     await this.server?.stop();
     }
+
+    get httpServer() {
+        return this.server?.httpServer;
+    }
 }
