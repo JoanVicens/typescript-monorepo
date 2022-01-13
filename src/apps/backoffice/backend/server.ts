@@ -26,7 +26,8 @@ export class Server {
         this.express.use(router);
 
         router.use((err: Error, _req: Request, res: Response, _next: Function) => {
-            res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
+          console.log(err.message);
+          res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
         });;
     }
 

@@ -3,3 +3,7 @@ services:
   Apps.Backoffice.Backend.controllers.StatusGetController:
     class: ../../controllers/StatusGetController
     arguments: []
+
+  Apps.Backoffice.Backend.controllers.RehersalsPutController:
+    class: ../../controllers/RehersalsPutController
+    arguments: ["@Backoffice.Rehersals.application.RehersalCreator"]

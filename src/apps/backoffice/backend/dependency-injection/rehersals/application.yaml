@@ -1,0 +1,9 @@
+services:
+
+  Backoffice.Rehersals.application.RehersalCreator:
+    class: ../../../../../contexts/backoffice/rehersals/application/RehersalCreator
+    arguments: ["@Backoffice.Rehersals.domain.RehersalRepository"]
+
+  Backoffice.Rehersals.domain.RehersalRepository:
+    class: ../../../../../contexts/backoffice/rehersals/infrastructure/persistance/FileRehersalRepository
+    arguments: []

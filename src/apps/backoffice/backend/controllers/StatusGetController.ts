@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Controller } from "./controller";
+import { Controller } from "./Controller";
 
 export default class StatusGetController implements Controller {
     
