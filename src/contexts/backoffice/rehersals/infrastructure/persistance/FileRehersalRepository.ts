@@ -12,7 +12,7 @@ export class FileRehersalRepository implements RehersalRepository {
     }
 
     async save(rehersal: Rehersal): Promise<void> {
-        fs.promises.writeFile(this.filePath(rehersal.id), serialize(rehersal));
+        fs.promises.writeFile(this.filePath(rehersal.id.value), serialize(rehersal));
 
     }
 

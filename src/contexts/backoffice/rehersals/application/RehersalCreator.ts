@@ -1,3 +1,4 @@
+import { Uuid } from "../../../shared/domain/value-object/Uuid";
 import { Rehersal } from "../domain/Rehersal";
 import { RehersalRepository } from "../domain/RehersalRepository";
 import { RehersalCreatorRequest } from "./RehersalCreatorRequest";
@@ -12,7 +13,7 @@ export class RehersalCreator {
 
     async run(request: RehersalCreatorRequest) {
         const rehersal = new Rehersal(
-            request.id, 
+            new Uuid(request.id),
             request.daytime,
             request.duration
         );

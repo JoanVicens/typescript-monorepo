@@ -1,11 +1,13 @@
+import { Uuid } from "../../../shared/domain/value-object/Uuid";
+
 export class Rehersal {
 
-    readonly id: string;
+    readonly id: Uuid;
     readonly daytime: string;
     readonly duration: string;
 
     constructor(
-        id: string,
+        id: Uuid,
         daytime: string,
         duration: string) {
 

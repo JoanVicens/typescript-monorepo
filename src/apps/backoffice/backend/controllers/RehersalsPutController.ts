@@ -3,14 +3,6 @@ import httpStatus from "http-status";
 import { RehersalCreator } from "../../../../contexts/backoffice/rehersals/application/RehersalCreator";
 import { Controller } from "./Controller";
 
-type RehersalPutRequest = Request & {
-    body: {
-        id: string;
-        daytime: string;
-        duration: string;
-    }
-}
-
 
 export class RehersalsPutController implements Controller {
 
@@ -20,9 +12,11 @@ export class RehersalsPutController implements Controller {
         this.rehersalCreator = rehersalCreator;
     }
 
-    async run(req: RehersalPutRequest, res: Response): Promise<void> {
+    async run(req: Request, res: Response): Promise<void> {
 
-        const { id, daytime, duration } = req.body;
+        const { daytime, duration } = req.body;
+
+        const id: string = req.params.id;
 
         await this.rehersalCreator.run({ id, daytime, duration });
 
