@@ -1,11 +1,21 @@
 import { Rehersal } from "../domain/Rehersal";
 import { RehersalRepository } from "../domain/RehersalRepository";
+import { RehersalCreatorRequest } from "./RehersalCreatorRequest";
 
 export class RehersalCreator {
-    constructor(private repository: RehersalRepository) {}
 
-    async run(id: string, daytime: string, duration: string) {
-        const rehersal = new Rehersal(id, daytime, duration);
+    private readonly repository: RehersalRepository;
+
+    constructor(repository: RehersalRepository) {
+        this.repository = repository;
+    }
+
+    async run(request: RehersalCreatorRequest) {
+        const rehersal = new Rehersal(
+            request.id, 
+            request.daytime,
+            request.duration
+        );
 
         return this.repository.save(rehersal);
     }

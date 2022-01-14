@@ -17,9 +17,9 @@ describe('RehersalCreator', () => {
         const daytime = "daytime";
         const duration = "2 hours";
 
-        const exepectedRehersal = new Rehersal(id, daytime, duration);
+        const exepectedRehersal = new Rehersal( id, daytime, duration);
 
-        await SUT.run(id, daytime, duration);
+        await SUT.run({id, daytime, duration});
 
         repository.assertSaveHasBeenCalledWith(exepectedRehersal);
     });
