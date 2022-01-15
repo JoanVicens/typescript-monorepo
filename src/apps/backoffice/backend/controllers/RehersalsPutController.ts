@@ -14,11 +14,11 @@ export class RehersalsPutController implements Controller {
 
     async run(req: Request, res: Response): Promise<void> {
 
-        const { daytime, duration } = req.body;
+        const { timestamp, duration } = req.body;
 
         const id: string = req.params.id;
 
-        await this.rehersalCreator.run({ id, daytime, duration });
+        await this.rehersalCreator.run({ id, timestamp, duration });
 
         res.status(httpStatus.CREATED).send();
     }

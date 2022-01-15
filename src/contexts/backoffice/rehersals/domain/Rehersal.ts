@@ -1,22 +1,16 @@
-import { Uuid } from "../../../shared/domain/value-object/Uuid";
+import { RehersalId } from "../../shared/Rehersals/RehersalId";
+import { RehersalDuration } from "./RehersalDuration";
+import { RehersalTimestamp } from "./RehersalTimestamp";
 
 export class Rehersal {
 
-    readonly id: Uuid;
-    readonly daytime: string;
-    readonly duration: string;
+    readonly id: RehersalId;
+    readonly timestamp: RehersalTimestamp;
+    readonly duration: RehersalDuration;
 
-    constructor(
-        id: Uuid,
-        daytime: string,
-        duration: string) {
-
+    constructor({ id, timestamp, duration }: { id: RehersalId, timestamp: RehersalTimestamp, duration: RehersalDuration }) {
         this.id = id;
-        this.daytime = daytime;
+        this.timestamp = timestamp;
         this.duration = duration;
-    }
-
-    doSomething() {
-        return this.id + this.daytime + this.duration;
     }
 }   

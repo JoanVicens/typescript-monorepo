@@ -18,9 +18,13 @@ export class FileRehersalRepository implements RehersalRepository {
 
     async search(rehersalId: string): Promise<Rehersal> {
         const rehersalData = await fs.promises.readFile(this.filePath(rehersalId));
-        const { id, daytime, duration } = deserialize(rehersalData);
+        const { id, timestamp, duration } = deserialize(rehersalData);
 
-        return new Rehersal(id, daytime, duration);
+        return new Rehersal({
+            id,
+            timestamp,
+            duration,
+        });
     }
 
 }
