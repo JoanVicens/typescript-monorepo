@@ -1,9 +1,7 @@
 import { RehersalCreator } from '../../../../../src/contexts/backoffice/rehersals/application/RehersalCreator';
-import { Rehersal } from '../../../../../src/contexts/backoffice/rehersals/domain/Rehersal';
+import { RehersalMother } from '../model/RehersalMother';
 import { RehersalRepositoryMock } from "../__mocks__/RehersalRepositoryMock";
-import { Uuid } from "../../../../../src/contexts/shared/domain/value-object/Uuid";
-import { RehersalTimestamp } from '../../../../../src/contexts/backoffice/rehersals/domain/RehersalTimestamp';
-import { RehersalDuration } from '../../../../../src/contexts/backoffice/rehersals/domain/RehersalDuration';
+import { CreateReheresalRequestMother } from './CreateRehersalRequestMother';
 
 describe('RehersalCreator', () => {
     let repository: RehersalRepositoryMock;
@@ -14,15 +12,11 @@ describe('RehersalCreator', () => {
 
     it('should create a valid rehersal', async () => {
 
-        const SUT = new RehersalCreator(repository);
+        const request = CreateReheresalRequestMother.random();        
+        const exepectedRehersal = RehersalMother.fromRequest(request);
         
-        const id = new Uuid("3c560334-df73-4494-a2c9-f79af36c3f43");
-        const timestamp = new RehersalTimestamp(1642204271);
-        const duration = new RehersalDuration(2);
-
-        const exepectedRehersal = new Rehersal({id, timestamp, duration});
-
-        await SUT.run({ id: id.value, timestamp: timestamp.value, duration: duration.value});
+        const SUT = new RehersalCreator(repository);
+        await SUT.run(request);
 
         repository.assertSaveHasBeenCalledWith(exepectedRehersal);
     });
