@@ -1,3 +1,9 @@
 imports:
  - { resource: ./apps/application.yaml }
  - { resource: ./rehersals/application.yaml }
+
+services:
+
+  Backoffice.Backend.EnvironmentArranger:
+    class: ../../../../../tests/contexts/shared/infrastructure/mongo/MongoEnvironmentArranger
+    arguments: ['@Backoffice.ConnectionManager']
