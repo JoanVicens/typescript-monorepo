@@ -8,7 +8,15 @@ x-app-service: &default-app
     - node_modules:/code/node_modules:delegated
 
 services:
-
+  mongo:
+    image: mongo:5.0.0
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/dev
+    volumes:
+      - ./data/mongo:/data/db:delegated
+    ports:
+      - 27017:27017
+      
   backoffice-backend:
     <<: *default-app
     command: bash -c "npm run build && npm run start:backoffice:backend"

@@ -1,9 +1,19 @@
 services:
+  Backoffice.MongoConfig:
+    factory:
+      class: ../../../../../contexts/shared/infrastructure/persistance/mongo/MongoConfigFactory
+      method: 'createConfig'
+
+  Backoffice.ConnectionManager:
+    factory:
+      class: ../../../../../contexts/shared/infrastructure/persistance/mongo/MongoClientFactory
+      method: 'createClient'
+    arguments: ['backoffice', '@Backoffice.MongoConfig'] 
 
   Backoffice.Rehersals.application.RehersalCreator:
     class: ../../../../../contexts/backoffice/rehersals/application/RehersalCreator
     arguments: ["@Backoffice.Rehersals.domain.RehersalRepository"]
 
   Backoffice.Rehersals.domain.RehersalRepository:
-    class: ../../../../../contexts/backoffice/rehersals/infrastructure/persistance/FileRehersalRepository
-    arguments: []
+    class: ../../../../../contexts/backoffice/rehersals/infrastructure/persistance/MongoRehersalRepository
+    arguments: ['@Backoffice.ConnectionManager']
